@@ -107,12 +107,13 @@ class FragmentProfile : Fragment() {
     }
 
     private fun calculateCurrentYear(rollNo: String): String {
-        val admissionYear = rollNo.substring(3, 7).toInt()
-        val currentYear = Calendar.getInstance().get(Calendar.YEAR)
-        val acadYear = currentYear - admissionYear + 1
-        return acadYear.toString() + getSuffix(acadYear)
-    }
+    val admissionYear = rollNo.substring(3, 7).toInt()
+    val currentYear = Calendar.getInstance().get(Calendar.YEAR)
+    val acadYear = (currentYear * 12 + 8) / 12 - admissionYear
 
+    return acadYear.toString() + getSuffix(acadYear)
+}
+    
     private fun getSuffix(year: Int): String {
         if (year in 11..13) {
             return "th"
